@@ -27,5 +27,6 @@ hs_err_pid*
 target/*
 logs/*
 /logs/*
+*/logs/*
 *.target/*
 */target/*
