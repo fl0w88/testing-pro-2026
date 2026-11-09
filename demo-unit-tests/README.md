@@ -132,9 +132,10 @@ Erledigt, wenn: alle drei Tests grün sind und Sie erklären können, warum sich
 | 4b | Den Fehlerzustand in `StringComparator.java` finden und beheben. Danach **alle** Tests erneut ausführen. |
 | 4c | Zusatz: Test `emptyListStaysEmpty` schreiben. |
 
-Erledigt, wenn: alle Tests grün sind und Sie benennen können, was hier Fehlerwirkung und was Fehlerzustand war.
+Erledigt, wenn: Alle Tests grün sind und Sie benennen können, was hier Fehlerwirkung und was Fehlerzustand war.
 
 Zusatzfragen für Schnelle:
-
+- Wie prüft man den Author/E-Mail des Taschenrechners?
 - Wie sortiert der WordSorter `"Äpfel", "Apfel", "Zebra"`? Entspricht das der deutschen Sortierung im Wörterbuch?
 - Was passiert bei `WordSorter.sortWords(List.of("b", "a"))`? Warum?
+
