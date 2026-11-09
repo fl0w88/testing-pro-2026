@@ -10,8 +10,8 @@
 
 package com.example;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -19,7 +19,7 @@ import java.math.RoundingMode;
 
 public class Calculator {
 
-    private static final Logger LOGGER = LogManager.getLogger(Calculator.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Calculator.class);
 
     public String authorName = "John Doe";
     public String authorEmail = "john.doe@gmail.com";

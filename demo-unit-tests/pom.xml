@@ -16,8 +16,9 @@
         <maven.compiler.release>17</maven.compiler.release>
 
         <!-- library versions -->
-        <junit.version>6.0.3</junit.version>
-        <log4j.version>2.25.2</log4j.version>
+        <junit.version>6.1.3</junit.version>
+        <slf4j.version>2.0.20</slf4j.version>
+        <logback.version>1.6.6</logback.version>
 
         <!-- plugin versions -->
         <maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version>
@@ -45,11 +46,16 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Logging: log4j2 -->
+        <!-- Logging: SLF4J is the API the code uses, Logback is the implementation behind it -->
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>${log4j.version}</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
         </dependency>
     </dependencies>
 

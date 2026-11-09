@@ -54,11 +54,6 @@ class WordSorterTest {
         assertEquals(List.of("Anna", "bert", "Zoe"), result);
     }
 
-    // Übung 4b (Lösung): Der Fehlerzustand lag in StringComparator.compare():
-    //   o1.compareTo(o2) unterscheidet Groß- und Kleinschreibung (alle Großbuchstaben vor
-    //   allen Kleinbuchstaben). Korrektur: o1.compareToIgnoreCase(o2).
-    //   Fehlerwirkung: falsche Reihenfolge "Anna", "Zoe", "bert" im Test von Übung 4a.
-
     @Test
     @DisplayName("Übung 4c (Zusatz): eine leere Liste bleibt leer")
     void emptyListStaysEmpty() {

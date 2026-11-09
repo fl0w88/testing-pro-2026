@@ -4,22 +4,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Unit-Tests für die Klasse {@link Calculator}.
  *
  * <p>Aufbau dieser Datei:
  * <ul>
- *   <li>Beispiele: zwei fertige Tests zum Nachlesen</li>
+ *   <li>Beispiel: ein fertiger Test zum Nachlesen</li>
+ *   <li>Aufwärmübung: einen zweiten Additionstest selbst schreiben</li>
  *   <li>Übung 2: Grundrechenarten testen</li>
  *   <li>Übung 3: Ausnahmen und Grenzfälle testen</li>
  * </ul>
  *
- * <p>Branch loesungen-tag-1: Musterlösungen aller Übungen.
+ * <p>Alle Übungstests schlagen zunächst mit {@code fail(...)} fehl. Vorgehen siehe README.md:
+ * TODOs umsetzen, die Zeile mit {@code fail(...)} löschen, Test ausführen.
  */
 class CalculatorTest {
 
@@ -32,11 +33,11 @@ class CalculatorTest {
     }
 
     // =====================================================================
-    // Beispiele
+    // Beispiel
     // =====================================================================
 
     @Test
-    @DisplayName("Beispiel: 1 + 2 ergibt 3")
+    @DisplayName("Beispiel: 1 + 2 = 3")
     void additionReturnsSumOfTwoNumbers() {
         // Arrange: der Calculator wurde bereits in setUp() erzeugt
 
@@ -47,12 +48,18 @@ class CalculatorTest {
         assertEquals(3.0, result);
     }
 
-    @Test
-    @DisplayName("Beispiel: 1 + 2 + 3 ergibt 6")
-    void additionReturnsSumOfThreeNumbers() {
-        double result = calculator.add(1, 2, 3);
+    // =====================================================================
+    // Aufwärmübung
+    // =====================================================================
 
-        assertEquals(6.0, result);
+    @Test
+    @DisplayName("Aufwärmen: 1 + 2 + 3 = 6")
+    void additionReturnsSumOfThreeNumbers() {
+        // TODO Act: add mit drei Zahlen aufrufen und das Ergebnis speichern
+
+        // TODO Assert: erwartetes und tatsächliches Ergebnis vergleichen
+
+        fail("Noch nicht implementiert");
     }
 
     // =====================================================================
@@ -60,29 +67,33 @@ class CalculatorTest {
     // =====================================================================
 
     @Test
-    @DisplayName("Übung 2a: 10 - 4 ergibt 6")
+    @DisplayName("Übung 2a: 10 - 4 = 6")
     void subtractionReturnsDifference() {
-        // Act
-        double result = calculator.subtract(10, 4);
+        // TODO Act
 
-        // Assert
-        assertEquals(6.0, result);
+        // TODO Assert
+
+        fail("Noch nicht implementiert");
     }
 
     @Test
-    @DisplayName("Übung 2b: 3 * 4 ergibt 12")
+    @DisplayName("Übung 2b: 3 * 4 = 12")
     void multiplicationReturnsProduct() {
-        double result = calculator.multiply(3, 4);
+        // TODO Act
 
-        assertEquals(12.0, result);
+        // TODO Assert
+
+        fail("Noch nicht implementiert");
     }
 
     @Test
-    @DisplayName("Übung 2c: 10 / 4 ergibt 2.5")
+    @DisplayName("Übung 2c: 10 / 4 = 2.5")
     void divisionReturnsQuotient() {
-        double result = calculator.divide(10, 4);
+        // TODO Act
 
-        assertEquals(2.5, result);
+        // TODO Assert
+
+        fail("Noch nicht implementiert");
     }
 
     // =====================================================================
@@ -92,30 +103,9 @@ class CalculatorTest {
     @Test
     @DisplayName("Übung 3a: Addition mit nur einer Zahl löst eine IllegalArgumentException aus")
     void additionWithOnlyOneNumberThrowsException() {
-        assertThrows(IllegalArgumentException.class, () -> calculator.add(5));
+        // TODO Act + Assert: prüfen, dass der Aufruf die erwartete Ausnahme auslöst
+
+        fail("Noch nicht implementiert");
     }
 
-    @Test
-    @DisplayName("Übung 3b: BigDecimal-Division durch 0 löst eine IllegalArgumentException aus")
-    void bigDecimalDivisionByZeroThrowsException() {
-        // Arrange
-        BigDecimal ten = new BigDecimal("10");
-        BigDecimal zero = BigDecimal.ZERO;
-
-        // Act + Assert
-        assertThrows(IllegalArgumentException.class, () -> calculator.divide(ten, zero));
-    }
-
-    @Test
-    @DisplayName("Übung 3c: double-Division durch 0 – was passiert?")
-    void doubleDivisionByZero() {
-        // Act
-        double result = calculator.divide(10, 0);
-
-        // Assert: bei double gibt es keine Ausnahme, sondern den Wert "unendlich"
-        assertEquals(Double.POSITIVE_INFINITY, result);
-        // Diskussion: Die BigDecimal-Variante löst eine Ausnahme aus (Übung 3b), die
-        // double-Variante nicht. Das Verhalten ist uneinheitlich; ob das gewollt ist,
-        // muss die Anforderung klären, nicht der Test.
-    }
 }
