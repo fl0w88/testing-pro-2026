@@ -1,32 +1,69 @@
-/*
- * Copyright 2015-2018 the original author or authors.
- *
- * All rights reserved. This program and the accompanying materials are
- * made available under the terms of the Eclipse Public License v2.0 which
- * accompanies this distribution and is available at
- *
- * http://www.eclipse.org/legal/epl-v20.html
- */
-
 package com.example;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-public class WordSorterTest {
+/**
+ * Unit-Tests für die Klasse {@link WordSorter}.
+ *
+ * <p>Anforderung an den WordSorter (siehe README.md):
+ * Wörter werden alphabetisch aufsteigend sortiert.
+ * Groß- und Kleinschreibung wird dabei nicht unterschieden.
+ *
+ * <p>Übung 4: einen Fehlerzustand im WordSorter finden und beheben.
+ */
+class WordSorterTest {
+
+    // =====================================================================
+    // Beispiel
+    // =====================================================================
 
     @Test
-    public void test1() {
-        List<String> toSort = Arrays.asList("Maria", "Ana", "Laura");
+    @DisplayName("Beispiel: drei großgeschriebene Namen werden alphabetisch sortiert")
+    void sortsCapitalizedNamesAlphabetically() {
+        // Arrange: eine veränderbare Liste (ArrayList), weil sortWords die Liste selbst sortiert
+        List<String> names = new ArrayList<>(List.of("Maria", "Ana", "Laura"));
 
-        List<String> result = WordSorter.sortWords(toSort);
+        // Act
+        List<String> result = WordSorter.sortWords(names);
 
-        Assertions.assertEquals("Ana", result.get(0));
-        Assertions.assertEquals("Laura", result.get(1));
-        Assertions.assertEquals("Maria", result.get(2));
+        // Assert: Listen werden mit equals verglichen – Reihenfolge und Inhalt müssen stimmen
+        assertEquals(List.of("Ana", "Laura", "Maria"), result);
     }
 
+    // =====================================================================
+    // Übung 4: Fehler im WordSorter finden
+    // =====================================================================
+
+    @Test
+    @Disabled("Übung 4a: @Disabled entfernen und den Test schreiben")
+    @DisplayName("Übung 4a: Groß- und Kleinschreibung wird beim Sortieren nicht unterschieden")
+    void sortingIgnoresUpperAndLowerCase() {
+        // TODO Arrange: new ArrayList<>(List.of("bert", "Anna", "Zoe"))
+        // TODO Act: WordSorter.sortWords(...) aufrufen
+        // TODO Assert: laut Anforderung wird List.of("Anna", "bert", "Zoe") erwartet
+        // Führen Sie den Test aus. Schlägt er fehl? Lesen Sie die Meldung genau:
+        // Was war erwartet, was wurde geliefert?
+        fail("Übung 4a ist noch nicht umgesetzt");
+    }
+
+    // Übung 4b: Den Fehlerzustand im Produktcode finden (Tipp: StringComparator.java),
+    //           beheben und ALLE Tests erneut ausführen. Hier ist kein neuer Test nötig.
+
+    @Test
+    @Disabled("Übung 4c (Zusatz): @Disabled entfernen und den Test schreiben")
+    @DisplayName("Übung 4c (Zusatz): eine leere Liste bleibt leer")
+    void emptyListStaysEmpty() {
+        // TODO Arrange: new ArrayList<String>()
+        // TODO Act: WordSorter.sortWords(...) aufrufen
+        // TODO Assert: assertTrue(result.isEmpty()) oder assertEquals(List.of(), result)
+        fail("Übung 4c ist noch nicht umgesetzt");
+    }
 }
