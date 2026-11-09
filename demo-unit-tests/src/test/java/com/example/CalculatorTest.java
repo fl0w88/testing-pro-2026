@@ -1,12 +1,13 @@
 package com.example;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Unit-Tests für die Klasse {@link Calculator}.
@@ -18,8 +19,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  *   <li>Übung 3: Ausnahmen und Grenzfälle testen</li>
  * </ul>
  *
- * <p>Vorgehen bei jeder Übung: {@code @Disabled} entfernen, die TODO-Kommentare umsetzen,
- * die Zeile mit {@code fail(...)} löschen und den Test ausführen.
+ * <p>Branch loesungen-tag-1: Musterlösungen aller Übungen.
  */
 class CalculatorTest {
 
@@ -60,30 +60,29 @@ class CalculatorTest {
     // =====================================================================
 
     @Test
-    @Disabled("Übung 2a: @Disabled entfernen und den Test schreiben")
     @DisplayName("Übung 2a: 10 - 4 ergibt 6")
     void subtractionReturnsDifference() {
-        // TODO Act: calculator.subtract(10, 4) aufrufen und das Ergebnis speichern
-        // TODO Assert: das Ergebnis mit 6.0 vergleichen
-        fail("Übung 2a ist noch nicht umgesetzt");
+        // Act
+        double result = calculator.subtract(10, 4);
+
+        // Assert
+        assertEquals(6.0, result);
     }
 
     @Test
-    @Disabled("Übung 2b: @Disabled entfernen und den Test schreiben")
     @DisplayName("Übung 2b: 3 * 4 ergibt 12")
     void multiplicationReturnsProduct() {
-        // TODO Act: calculator.multiply(3, 4) aufrufen
-        // TODO Assert: das Ergebnis mit 12.0 vergleichen
-        fail("Übung 2b ist noch nicht umgesetzt");
+        double result = calculator.multiply(3, 4);
+
+        assertEquals(12.0, result);
     }
 
     @Test
-    @Disabled("Übung 2c: @Disabled entfernen und den Test schreiben")
     @DisplayName("Übung 2c: 10 / 4 ergibt 2.5")
     void divisionReturnsQuotient() {
-        // TODO Act: calculator.divide(10, 4) aufrufen
-        // TODO Assert: das Ergebnis mit 2.5 vergleichen
-        fail("Übung 2c ist noch nicht umgesetzt");
+        double result = calculator.divide(10, 4);
+
+        assertEquals(2.5, result);
     }
 
     // =====================================================================
@@ -91,35 +90,32 @@ class CalculatorTest {
     // =====================================================================
 
     @Test
-    @Disabled("Übung 3a: @Disabled entfernen und den Test schreiben")
     @DisplayName("Übung 3a: Addition mit nur einer Zahl löst eine IllegalArgumentException aus")
     void additionWithOnlyOneNumberThrowsException() {
-        // TODO assertThrows verwenden:
-        //      assertThrows(IllegalArgumentException.class, () -> calculator.add(5));
-        //      (import static org.junit.jupiter.api.Assertions.assertThrows; ergänzen)
-        fail("Übung 3a ist noch nicht umgesetzt");
+        assertThrows(IllegalArgumentException.class, () -> calculator.add(5));
     }
 
     @Test
-    @Disabled("Übung 3b: @Disabled entfernen und den Test schreiben")
     @DisplayName("Übung 3b: BigDecimal-Division durch 0 löst eine IllegalArgumentException aus")
     void bigDecimalDivisionByZeroThrowsException() {
-        // TODO Arrange: zwei Werte anlegen: new BigDecimal("10") und BigDecimal.ZERO
-        //      (import java.math.BigDecimal; ergänzen)
-        // TODO Act + Assert: mit assertThrows prüfen, dass calculator.divide(...) eine
-        //      IllegalArgumentException auslöst
-        fail("Übung 3b ist noch nicht umgesetzt");
+        // Arrange
+        BigDecimal ten = new BigDecimal("10");
+        BigDecimal zero = BigDecimal.ZERO;
+
+        // Act + Assert
+        assertThrows(IllegalArgumentException.class, () -> calculator.divide(ten, zero));
     }
 
     @Test
-    @Disabled("Übung 3c: @Disabled entfernen und den Test schreiben")
     @DisplayName("Übung 3c: double-Division durch 0 – was passiert?")
     void doubleDivisionByZero() {
-        // TODO 1. Vermuten Sie zuerst: Was liefert calculator.divide(10, 0)?
-        // TODO 2. Probieren Sie es aus (z.B. mit System.out.println).
-        // TODO 3. Halten Sie das tatsächliche Verhalten in einer Assertion fest.
-        //         Tipp: Double.POSITIVE_INFINITY
-        // Diskussion: Ist dieses Verhalten gewollt? Vergleichen Sie mit Übung 3b.
-        fail("Übung 3c ist noch nicht umgesetzt");
+        // Act
+        double result = calculator.divide(10, 0);
+
+        // Assert: bei double gibt es keine Ausnahme, sondern den Wert "unendlich"
+        assertEquals(Double.POSITIVE_INFINITY, result);
+        // Diskussion: Die BigDecimal-Variante löst eine Ausnahme aus (Übung 3b), die
+        // double-Variante nicht. Das Verhalten ist uneinheitlich; ob das gewollt ist,
+        // muss die Anforderung klären, nicht der Test.
     }
 }

@@ -89,6 +89,6 @@ Zusatzfragen für Schnelle:
 - Wie sortiert der WordSorter `"Äpfel", "Apfel", "Zebra"`? Entspricht das der deutschen Sortierung im Wörterbuch?
 - Was passiert bei `WordSorter.sortWords(List.of("b", "a"))`? Warum?
 
-## Lösungen
+## Lösungen (dieser Branch)
 
-Musterlösungen liegen im Branch `loesungen-tag-1`.
+Dieser Branch enthält die Musterlösungen. Alle 11 Tests sind grün.
