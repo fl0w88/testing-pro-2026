@@ -1,0 +1,68 @@
+# Copyright (c) 2026 Nagarro GmbH. Author: Florin Balint.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Example requests for the IntelliJ HTTP Client (click the green ▶ next to a request).
+# Start the API first: mvn spring-boot:run
+
+@host = http://localhost:8080
+
+### Health page
+GET {{host}}/health
+
+### Actuator health (technical)
+GET {{host}}/actuator/health
+
+### Calculator: 1 + 2
+GET {{host}}/api/calculator/add?numbers=1&numbers=2
+
+### Calculator: 1 + 2 + 3 with JSON body
+POST {{host}}/api/calculator/calculate
+Content-Type: application/json
+
+{
+  "operation": "ADD",
+  "numbers": [1, 2, 3]
+}
+
+### Calculator: only one number -> 400 Bad Request
+GET {{host}}/api/calculator/add?numbers=5
+
+### Calculator: 5 - 3
+GET {{host}}/api/calculator/subtract?numbers=5&numbers=3
+
+### Calculator: 2 * 3 * 4
+GET {{host}}/api/calculator/multiply?numbers=2&numbers=3&numbers=4
+
+### Calculator: 12 / 3 / 2
+GET {{host}}/api/calculator/divide?numbers=12&numbers=3&numbers=2
+
+### Ticket price: child (10) on a school day -> 1.60
+GET {{host}}/api/tickets/price?age=10&dateTime=2026-11-11T10:00:00
+
+### Ticket price: child (10) on a Sunday -> 0
+GET {{host}}/api/tickets/price?age=10&dateTime=2026-11-22T10:00:00
+
+### Buy a ticket: adult pays 5.00 -> change 1.80
+POST {{host}}/api/tickets
+Content-Type: application/json
+
+{
+  "age": 30,
+  "payment": 5.00,
+  "dateTime": "2026-11-11T10:00:00"
+}
+
+### Buy a ticket: insufficient payment -> 400 Bad Request
+POST {{host}}/api/tickets
+Content-Type: application/json
+
+{
+  "age": 30,
+  "payment": 1.00
+}
+
+### School holidays 2026/27
+GET {{host}}/api/school-holidays/2026
+
+### Is 28.12.2026 a school holiday?
+GET {{host}}/api/school-holidays/check?date=2026-12-28

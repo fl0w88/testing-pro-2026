@@ -1,0 +1,42 @@
+# Copyright (c) 2026 Nagarro GmbH. Author: Florin Balint.
+# SPDX-License-Identifier: Apache-2.0
+
+spring:
+  application:
+    name: demo-api-tests
+  webflux:
+    # Error responses in the RFC 9457 "problem detail" JSON format
+    problemdetails:
+      enabled: true
+
+server:
+  port: 8080
+
+# Spring Boot Actuator: technical endpoints under /actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+  endpoint:
+    health:
+      show-details: always
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: demo-api-tests
+    description: Demo API for the calculator and the Vienna Lines ticket machine
+    company: Nagarro GmbH
+    author: Florin Balint
+
+# OpenAPI / Swagger UI (springdoc)
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    try-it-out-enabled: true

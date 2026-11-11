@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2026 Nagarro GmbH. Author: Florin Balint.
+  SPDX-License-Identifier: Apache-2.0
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+      Aggregator ("reactor") POM: lists all course projects so that Maven and IntelliJ find them
+      when this folder is opened. Each module keeps its own configuration (demo-api-tests inherits
+      from the Spring Boot parent, demo-unit-tests is a plain Maven project).
+
+      Examples (run in this folder):
+        mvn clean test                                  build and test all projects
+        mvn -pl demo-unit-tests test                    only the unit test project
+        mvn -pl demo-api-tests spring-boot:run          start the API
+    -->
+    <groupId>com.example</groupId>
+    <artifactId>testing-pro-2026</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>testing-pro-2026</name>
+    <description>Course projects for "Einführung in die Testautomatisierung"</description>
+
+    <organization>
+        <name>Nagarro GmbH</name>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Florin Balint</name>
+            <organization>Nagarro GmbH</organization>
+        </developer>
+    </developers>
+
+    <modules>
+        <module>demo-unit-tests</module>
+        <module>demo-api-tests</module>
+    </modules>
+
+</project>
