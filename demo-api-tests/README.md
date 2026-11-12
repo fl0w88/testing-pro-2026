@@ -21,6 +21,7 @@ erreichbar. So lernen Sie:
 | springdoc-openapi | 3.2.0 (OpenAPI-Beschreibung und Swagger UI) |
 | Jollyday | 2.24.0 (österreichische Feiertage) |
 | JUnit | 6 (über Spring Boot) |
+| Cucumber | 8.0.4 (BDD-Tests mit Gherkin) – wird von Maven automatisch geladen |
 
 ## API starten
 
@@ -133,14 +134,15 @@ Für die Tests ändert das nichts: Der `WebTestClient` wartet automatisch auf di
 
 ```
 demo-api-tests
-├── pom.xml                                   Maven-Konfiguration (Spring Boot 4.1.2, springdoc, Jollyday)
+├── pom.xml                                   Maven-Konfiguration (Spring Boot 4.1.2, springdoc, Jollyday, Cucumber)
 ├── requests.http                             Beispiel-Requests für den IntelliJ HTTP Client
 └── src
     ├── main/resources
     │   ├── application.yml                   Konfiguration (Port, Actuator, Swagger UI)
     │   └── logback.xml                       Logging-Konfiguration (Konsole und logs/)
     ├── main/java/com/example                 Produktcode aus demo-unit-tests (unverändert)
-    │   ├── Calculator.java, WordSorter.java, StringComparator.java
+    │   ├── calculator/Calculator.java
+    │   ├── strings/                          WordSorter, StringComparator
     │   ├── tickets/                          ViennaLinesTicketMachine, ViennaSchoolHolidays, Ticket
     │   └── api                               die REST-API
     │       ├── DemoApiApplication.java       Startklasse (main)
@@ -149,9 +151,16 @@ demo-api-tests
     │       ├── health/HealthController.java  /health und Weiterleitung von / zur Swagger UI
     │       ├── error/ApiExceptionHandler.java  IllegalArgumentException -> 400 Bad Request
     │       └── config/                       Beans der Fachklassen, Swagger-Infos
-    └── test/java/com/example/api
-        ├── calculator/CalculatorAdditionApiTest.java  zwei Beispiel-API-Tests (GET und POST) – hier ergänzen Sie Ihre Tests
-        └── health/HealthApiTest.java                  Smoke-Tests für /health und /actuator/health
+    ├── test/java/com/example
+    │   ├── api
+    │   │   ├── calculator/CalculatorAdditionApiTest.java  zwei Beispiel-API-Tests (GET und POST) – hier ergänzen Sie Ihre Tests
+    │   │   └── health/HealthApiTest.java                  Smoke-Tests für /health und /actuator/health
+    │   └── cucumber
+    │       ├── RunCucumberTest.java          startet alle .feature-Dateien unter src/test/resources (JUnit Platform Suite)
+    │       └── calculator/CalculatorSteps.java  Step-Definitionen (Gherkin-Sätze → Java-Methoden)
+    └── test/resources/features/calculator    Cucumber-Features (Gherkin auf Englisch)
+        ├── addition.feature                  Szenarien: mehrere Zahlen über eine Tabelle addieren
+        └── addition_outline.feature          Szenariogrundriss: zwei Zahlen addieren, mit Beispiele-Tabelle
 ```
 
 ## Tests ausführen
@@ -165,9 +174,14 @@ mvn -pl demo-api-tests test
 ```
 
 In IntelliJ: Rechtsklick auf `src/test/java/com/example/api` → „Run 'Tests in 'com.example.api''“.
+Die Cucumber-Szenarien starten Sie mit Rechtsklick auf `RunCucumberTest` → „Run 'RunCucumberTest'“.
+Der Runner führt automatisch **alle** `.feature`-Dateien unter `src/test/resources` aus (auch in Unterordnern)
+und sucht Step-Definitionen im Package `com.example` und allen Unterpackages. Neue Features und Steps
+brauchen also keine weitere Konfiguration.
 
-Beim ersten Start laufen **4 Tests**, alle grün: die zwei Beispiele in `CalculatorAdditionApiTest` und die
-zwei Smoke-Tests in `HealthApiTest`. Alle weiteren Tests schreiben Sie selbst (siehe Übungen).
+Beim ersten Start laufen **12 Tests**, alle grün: die zwei Beispiele in `CalculatorAdditionApiTest`, die
+zwei Smoke-Tests in `HealthApiTest` und 8 Cucumber-Szenarien (2 aus `addition.feature`, 6 Zeilen aus dem
+Szenariogrundriss in `addition_outline.feature`). Alle weiteren Tests schreiben Sie selbst (siehe Übungen).
 
 ### So funktioniert ein API-Test
 

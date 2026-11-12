@@ -12,7 +12,7 @@
 
 package com.example.api.config;
 
-import com.example.Calculator;
+import com.example.calculator.Calculator;
 import com.example.tickets.ViennaLinesTicketMachine;
 import com.example.tickets.ViennaSchoolHolidays;
 import org.springframework.context.annotation.Bean;

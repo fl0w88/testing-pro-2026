@@ -45,6 +45,7 @@
         <java.version>17</java.version>
         <jollyday.version>2.24.0</jollyday.version>
         <springdoc.version>3.2.0</springdoc.version>
+        <cucumber.version>8.0.4</cucumber.version>
     </properties>
 
     <dependencies>
@@ -94,6 +95,26 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Cucumber (BDD): Gherkin feature files + Java step definitions, run on the JUnit Platform -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- JUnit Platform Suite: @Suite runner class so Maven/IntelliJ find the Cucumber features -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

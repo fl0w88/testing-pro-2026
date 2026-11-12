@@ -20,7 +20,7 @@ erste Unit-Tests mit **JUnit 6**.
    - in IntelliJ: Rechtsklick auf `src/test/java` → „Run 'All Tests'“
    - oder im Terminal: `mvn clean test`
 
-Erwartetes Ergebnis beim ersten Start: **3 Tests bestanden, 8 Tests fehlgeschlagen**.
+Erwartetes Ergebnis beim ersten Start: **3 Tests bestanden, 6 Tests fehlgeschlagen**.
 Das ist gewollt: Die fehlschlagenden Tests sind die vorbereiteten Übungen. Sie enthalten
 nur das Gerüst (Name, `@DisplayName`, `TODO`-Kommentare) und enden mit `fail(...)`.
 Ein Test wird erst grün, wenn Sie ihn ausgefüllt haben.
@@ -33,16 +33,22 @@ demo-unit-tests
 └── src
     ├── main/resources/logback.xml           Logging-Konfiguration (Konsole und logs/)
     ├── main/java/com/example                Produktcode (das Testobjekt)
-    │   ├── Calculator.java                  Grundrechenarten für double und BigDecimal
-    │   ├── WordSorter.java                  sortiert eine Liste von Wörtern
-    │   ├── StringComparator.java            legt fest, wie zwei Wörter verglichen werden
+    │   ├── calculator
+    │   │   └── Calculator.java              Grundrechenarten für double und BigDecimal
+    │   ├── main
+    │   │   └── HelloWorld.java              einfaches Programm mit main-Methode („Hallo Welt“)
+    │   ├── strings
+    │   │   ├── WordSorter.java              sortiert eine Liste von Wörtern
+    │   │   └── StringComparator.java        legt fest, wie zwei Wörter verglichen werden
     │   └── tickets
     │       ├── ViennaLinesTicketMachine.java  Fahrscheinautomat der Wiener Linien (Einzelfahrt)
     │       ├── ViennaSchoolHolidays.java      Wiener Schulferien und schulfreie Tage
     │       └── Ticket.java                    der ausgegebene Fahrschein
     └── test/java/com/example                Testcode
-        ├── CalculatorTest.java              Beispiel, Aufwärmübung, Übung 2 und Übung 3
-        ├── WordSorterTest.java              Beispiel und Übung 4
+        ├── calculator
+        │   └── CalculatorTest.java          Beispiel, Aufwärmübung, Übung 2 und Übung 3
+        ├── strings
+        │   └── WordSorterTest.java          Beispiel und Übung 4
         └── tickets
             └── ViennaLinesTicketMachineTest.java  Übung 5 (legen Sie selbst an)
 ```

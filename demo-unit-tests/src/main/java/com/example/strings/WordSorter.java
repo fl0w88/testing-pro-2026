@@ -10,7 +10,7 @@
  * CONDITIONS OF ANY KIND, either express or implied. See the License for details.
  */
 
-package com.example;
+package com.example.strings;
 
 import java.util.List;
 

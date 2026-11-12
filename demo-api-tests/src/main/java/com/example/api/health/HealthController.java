@@ -35,7 +35,7 @@ public class HealthController {
 
     private final Instant startedAt = Instant.now();
 
-    @GetMapping("/health")
+    @GetMapping("/api/health")
     @Operation(summary = "Health page", description = "Returns status UP and a short message when the API is running.")
     public Mono<HealthResponse> health() {
         Instant now = Instant.now();

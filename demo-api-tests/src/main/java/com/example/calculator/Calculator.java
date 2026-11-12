@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v20.html
  */
 
-package com.example;
+package com.example.calculator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
