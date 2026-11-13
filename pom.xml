@@ -10,8 +10,8 @@
     <!--
       Aggregator ("reactor") POM: lists all course projects so that Maven and IntelliJ find them
       when this folder is opened. Each module keeps its own configuration (demo-api-tests and
-      demo-api-contract-tests inherit from the Spring Boot parent, demo-unit-tests and
-      demo-ui-tests are plain Maven projects).
+      demo-api-contract-tests inherit from the Spring Boot parent, demo-unit-tests,
+      demo-ui-tests and demo-taf-tests are plain Maven projects).
 
       Examples (run in this folder):
         mvn clean test                                  build and test all projects
@@ -19,6 +19,7 @@
         mvn -pl demo-api-tests spring-boot:run          start the API
         mvn -pl demo-api-contract-tests test            Pact contract tests (consumer, then provider)
         mvn -pl demo-ui-tests test                      Selenium UI tests (needs Google Chrome)
+        mvn -pl demo-taf-tests test                     test automation framework demo (needs Google Chrome)
     -->
     <groupId>com.example</groupId>
     <artifactId>testing-pro-2026</artifactId>
@@ -51,6 +52,7 @@
         <module>demo-api-tests</module>
         <module>demo-api-contract-tests</module>
         <module>demo-ui-tests</module>
+        <module>demo-taf-tests</module>
     </modules>
 
 </project>
