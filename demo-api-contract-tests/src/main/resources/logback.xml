@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2026 Nagarro GmbH. Author: Florin Balint.
+  SPDX-License-Identifier: Apache-2.0
+-->
+<configuration scan="true" scanPeriod="10 seconds">
+
+    <!-- Console output -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Log file, a new file every day -->
+    <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/com.example.demo.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/com.example.demo-%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="logfile"/>
+    </root>
+
+</configuration>

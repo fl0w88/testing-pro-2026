@@ -1,0 +1,22 @@
+# Copyright (c) 2026 Nagarro GmbH. Author: Florin Balint.
+# SPDX-License-Identifier: Apache-2.0
+
+spring:
+  application:
+    name: demo-api-contract-tests
+  webflux:
+    # Error responses in the RFC 9457 "problem detail" JSON format
+    problemdetails:
+      enabled: true
+
+# 8081, so this API can run next to demo-api-tests (port 8081)
+server:
+  port: 8081
+
+# OpenAPI / Swagger UI (springdoc)
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    try-it-out-enabled: true
