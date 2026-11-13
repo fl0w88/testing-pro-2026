@@ -21,18 +21,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.fail;
 
 /**
- * UI-Tests für <a href="https://www.penny.at/">www.penny.at</a>.
+ * UI tests for <a href="https://www.penny.at/">www.penny.at</a>.
  *
- * <p>Browser starten/schließen, Klicken und Warten erledigt {@link BaseUiTest}. Diese Klasse gibt nur
- * die Website an (Konstruktor) und enthält, was speziell für Penny ist: die Locator und die Testfälle.
+ * <p>Starting/closing the browser, clicking and waiting is done by {@link BaseUiTest}. This class only
+ * names the website (constructor) and contains what is specific to Penny: locators and test cases.
  */
 class PennyWebsiteTest extends BaseUiTest {
 
-    /** Der Cookie-Banner (Usercentrics) liegt in einem Shadow DOM unter diesem Element. */
+    /** The cookie banner (Usercentrics) lives in a shadow DOM below this element. */
     private static final By COOKIE_BANNER_HOST = By.cssSelector("aside#usercentrics-cmp-ui");
     private static final By ACCEPT_ALL_COOKIES = By.cssSelector("button#accept");
 
-    /** Den Impressum-Link gibt es im Footer zweimal (Desktop/Mobil) – clickElement nimmt den sichtbaren. */
+    /** The footer contains the imprint link twice (desktop/mobile) – clickElement takes the visible one. */
     private static final By FOOTER_IMPRESSUM_LINK = By.cssSelector("footer a[href='/impressum']");
 
     PennyWebsiteTest() {
@@ -40,26 +40,26 @@ class PennyWebsiteTest extends BaseUiTest {
     }
 
     // =====================================================================
-    // Beispiel 1: Startseite öffnen und Cookies akzeptieren
+    // Example 1: open the start page and accept the cookies
     // =====================================================================
 
     @Test
-    @DisplayName("Startseite öffnen und alle Cookies akzeptieren")
+    @DisplayName("Open the start page and accept all cookies")
     void openHomepageAndAcceptCookies() {
         // Arrange + Act
         open();
         acceptAllCookies();
 
         // Assert
-        // TODO: Hier prüfen ob der Titel der Seite "PENNY Österreich | Da schau her." ist.
+        // TODO Exercise 1: check here that the page title is "PENNY Österreich | Da schau her." (see README)
     }
 
     // =====================================================================
-    // Beispiel 2: Über den Footer zum Impressum navigieren
+    // Example 2: navigate to the imprint via the footer
     // =====================================================================
 
     @Test
-    @DisplayName("Über den Link im Footer zum Impressum navigieren")
+    @DisplayName("Navigate to the imprint (Impressum) via the footer link")
     void navigateToImpressumViaFooter() {
         // Arrange
         open();
@@ -75,12 +75,12 @@ class PennyWebsiteTest extends BaseUiTest {
 
 
     // =====================================================================
-    // Penny-spezifische Hilfsmethoden
+    // Penny-specific helper methods
     // =====================================================================
 
     /**
-     * Klickt im Cookie-Banner auf "Alles erlauben" und wartet, bis der Button verschwunden ist.
-     * Der Banner steckt in einem Shadow DOM – deshalb wird im {@code shadowRoot(...)} gesucht.
+     * Clicks "Alles erlauben" (accept all) in the cookie banner and waits until the button is gone.
+     * The banner lives in a shadow DOM – that is why the search happens in {@code shadowRoot(...)}.
      */
     private void acceptAllCookies() {
         clickElement(shadowRoot(COOKIE_BANNER_HOST), ACCEPT_ALL_COOKIES);
