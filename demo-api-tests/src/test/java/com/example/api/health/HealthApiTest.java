@@ -33,9 +33,9 @@ class HealthApiTest {
     @DisplayName("/health meldet 'up and running'")
     void healthPageSaysUp() {
         webTestClient.get()
-                .uri("/health")
+                .uri("/api/health")
                 .exchange()
-                .expectStatus().isOk()
+                    .expectStatus().isOk()
                 .expectBody()
                 .jsonPath("$.status").isEqualTo("UP")
                 .jsonPath("$.message").isEqualTo("Demo API is up and running");

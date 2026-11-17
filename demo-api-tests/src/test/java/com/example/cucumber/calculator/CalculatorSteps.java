@@ -51,6 +51,11 @@ public class CalculatorSteps {
         result = calculator.add(values);
     }
 
+    @When("I subtract {double} and {double}")
+    public void iSubtractTheFollowingNumbers(double first, double second) {
+        result = calculator.subtract(first, second);
+    }
+
     // Act: genau zwei Zahlen direkt im Satz
     @When("I add {double} and {double}")
     public void iAddTwoNumbers(double first, double second) {
